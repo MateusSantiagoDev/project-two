@@ -9,4 +9,8 @@ export class ProductRepository {
   findAll(): Promise<ProductEntity[]> {
     return this.prisma.product.findMany()
   }
+
+  findOne(id: string): Promise<ProductEntity> {
+    return this.prisma.product.findUnique({ where: { id } })
+  }
 }

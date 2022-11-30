@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { ProductEntity } from './entities/product.entity';
 import { ProductService } from './product.service';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
@@ -14,5 +14,13 @@ export class ProductController {
   })
   findAll(): Promise<ProductEntity[]> {
     return this.service.findAll();
+  }
+
+  @Get(":id")
+  @ApiOperation({
+    summary: "Buscar um produto pelo ID",
+  })
+  findOne(@Param("id") id: string): Promise<ProductEntity> {
+    return this.service.findOne(id)
   }
 }
