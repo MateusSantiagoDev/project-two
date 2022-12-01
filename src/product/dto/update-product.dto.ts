@@ -1,3 +1,3 @@
 import { CreateProductDto } from "./create-product.dto";
 
-export interface UpdateProductDto extends CreateProductDto{}
+export class UpdateProductDto extends CreateProductDto{}

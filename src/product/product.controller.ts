@@ -1,7 +1,8 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ProductEntity } from './entities/product.entity';
 import { ProductService } from './product.service';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
+import { CreateProductDto } from './dto/create-product.dto';
 
 @ApiTags("Product")
 @Controller("product")
@@ -23,4 +24,13 @@ export class ProductController {
   findOne(@Param("id") id: string): Promise<ProductEntity> {
     return this.service.findOne(id)
   }
+
+  @Post()
+  @ApiOperation({
+    summary: "adicionar um produto"
+  })
+  create(@Body() dto: CreateProductDto): Promise<ProductEntity> {
+    return this.service.create(dto)
+  }
+
 }
